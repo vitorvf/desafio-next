@@ -1,9 +1,11 @@
 import { GetStaticProps } from 'next';
-
 import { getPrismicClient } from '../services/prismic';
+import Prismic from '@prismicio/client';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+import Header from '../components/Header';
+import Link from 'next/link';
 
 interface Post {
   uid?: string;
@@ -15,6 +17,9 @@ interface Post {
   };
 }
 
+interface PostsProps {
+  posts: Post[];
+}
 interface PostPagination {
   next_page: string;
   results: Post[];
@@ -24,13 +29,53 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home({ posts }: PostsProps) {
+  return (
+    <>
+      <main className={commonStyles.container}>
+        <Header />
+        <div className={styles.posts}>
+          {posts.map(post => (
+            <Link href={`/posts/${post.uid}`}>
+              <a className={styles.post}>
+                <strong>{post.data.title}</strong>
+                <p>{post.data.subtitle}</p>
+                <ul>
+                  <li>{post.first_publication_date}</li>
+                  <li>{post.data.author}</li>
+                </ul>
+              </a>
+            </Link>
+          ))}
+          <button type="button">Carregar mais posts</button>
+        </div>
+      </main>
+    </>
+  );
+}
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient();
-//   // const postsResponse = await prismic.query(TODO);
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
+  const response = await prismic.query<any>(
+    [Prismic.Predicates.at('document.type', 'publications')],
+    {
+      pageSize: 100,
+    }
+  );
 
-//   // TODO
-// };
+  const posts = response.results.map(post => {
+    return {
+      uid: post.id,
+      first_publication_date: post.first_publication_date,
+      data: {
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        author: post.data.author,
+      },
+    };
+  });
+
+  return {
+    props: { posts },
+  };
+};

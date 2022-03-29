@@ -1,0 +1,41 @@
+{
+  "id": "943764a9-8e46-40df-be58-128a4077c88f",
+  "uid": "architecto-quam-error",
+  "type": "publications",
+  "data": {
+    "title": "facilitate revolutionary models",
+    "subtitle": "engage frictionless portals",
+    "author": "transition wireless interfaces",
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&h=500&fit=crop"
+    },
+    "content": [
+      {
+        "heading": "e-enable turn-key solutions",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Cillum amet incididunt occaecat ullamco dolore veniam cupidatat culpa culpa voluptate. Qui sint aliqua nostrud ex velit deserunt id incididunt pariatur dolor duis aliquip Lorem. Duis labore enim eu Lorem labore nostrud laborum.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "enable ubiquitous initiatives",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Do aliqua magna sint labore in qui laboris. Id consectetur proident cillum dolor quis in non mollit magna reprehenderit velit. Magna proident dolor reprehenderit labore eu est.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}
