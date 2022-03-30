@@ -30,7 +30,7 @@ export default function Post({ post }: PostProps) {
   return (
     <>
       <main>
-        <div>teste</div>
+        <div></div>
       </main>
     </>
   );
@@ -50,18 +50,28 @@ export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params;
 
   const prismic = getPrismicClient();
-  const response = await prismic.getByUID('publications', String(slug), {});
+  const response = await prismic.getByUID<any>(
+    'publications',
+    String(slug),
+    {}
+  );
 
   const post = {
+    uid: response.uid,
+    first_publication_date: response.first_publication_date,
     data: {
-      title: response.data?.title
+      title: response.data.title,
+      subtitle: response.data.subtitle,
+      author: response.data.auhor,
+      banner: {
+        url: response.data.banner.url,
+      },
+
+      content: response.data.content,
     },
   };
 
   console.log(post);
-  return {
-    props: {
-      post,
-    },
-  };
+
+  return {};
 };
