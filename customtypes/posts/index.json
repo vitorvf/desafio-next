@@ -1,13 +1,13 @@
 {
-  "id": "publications",
-  "label": "publications",
+  "id": "posts",
+  "label": "posts",
   "repeatable": true,
   "status": true,
   "json": {
     "Main": {
       "uid": {
         "config": {
-          "label": "slug",
+          "label": "Uid",
           "placeholder": ""
         },
         "type": "UID"

@@ -36,7 +36,7 @@ export default function Home({ posts }: PostsProps) {
         <Header />
         <div className={styles.posts}>
           {posts.map(post => (
-            <Link href={`/posts/${post.uid}`}>
+            <Link key={post.uid} href={`/post/${post.uid}`}>
               <a className={styles.post}>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
@@ -57,7 +57,7 @@ export default function Home({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const response = await prismic.query<any>(
-    [Prismic.Predicates.at('document.type', 'publications')],
+    [Prismic.Predicates.at('document.type', 'posts')],
     {
       pageSize: 100,
     }
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = response.results.map(post => {
     return {
-      uid: post.id,
+      uid: post.uid,
       first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
@@ -74,6 +74,8 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     };
   });
+
+  console.log(posts);
 
   return {
     props: { posts },

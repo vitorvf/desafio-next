@@ -1,7 +1,7 @@
 {
-	"_latest": "0.3.3",
-	"apiEndpoint": "https://blogovf.prismic.io/api/v2",
-	"libraries": [
-		"@/slices"
-	]
+  "_latest": "0.3.3",
+  "apiEndpoint": "https://desafionexts.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ]
 }
